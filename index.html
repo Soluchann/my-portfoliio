@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adarsh | AI/ML Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner flex items-center justify-between">
+        <a href="#" class="logo text-ellipsis">SAC</a>
+        <nav class="nav">
+          <ul class="nav__list flex">
+            <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+            <li class="nav__item"><a href="#education" class="nav__link">Education</a></li>
+            <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
+            <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
+            <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+            <li class="nav__item"><a href="#certifications" class="nav__link">Certifications</a></li>
+            <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header__actions flex items-center gap-16">
+          <button class="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+          </button>
+          <button class="btn btn--primary btn--sm" id="downloadResume">
+            <i class="fas fa-download"></i>
+            <span class="hidden sm:inline">Download CV</span>
+          </button>
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero__inner">
+          <div class="hero__content">
+            <h1 class="hero__name">Sai Adarsh Chatlapally</h1>
+            <h2 class="hero__title">AI/ML Engineer | Computer Science Student</h2>
+            <p class="hero__tagline">Building intelligent systems to solve real-world problems with cutting-edge artificial intelligence and machine learning technologies</p>
+            <div class="hero__actions">
+              <a href="#about" class="btn btn--primary btn--lg">
+                <i class="fas fa-user"></i>
+                View Resume
+              </a>
+              <a href="#contact" class="btn btn--outline btn--lg">
+                <i class="fas fa-envelope"></i>
+                Contact Me
+              </a>
+            </div>
+          </div>
+          <div class="hero__image">
+            <div class="avatar">
+              <div class="avatar__placeholder">
+                <img src="images\WhatsApp Image 2025-06-05 at 8.13.38 AM.jpeg" alt="Adarsh's Avatar" class="avatar__img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">About Me</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="about__content">
+          <p>I am a Computer Science student specializing in Artificial Intelligence and Machine Learning at SRM Institute of Science and Technology. With a passion for developing intelligent solutions, I have gained practical experience through internships at Kinara AI where I worked on various projects involving Deep learning and kernel optimization.</p>
+          <p>My academic journey has equipped me with strong foundations in programming languages like Python, C, and C++, while my professional experiences have honed my skills in real-world AI/ML applications. I am particularly interested in solving complex problems through innovative technological solutions and contributing to the advancement of artificial intelligence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Education</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">SRM Institute Of Science and Technology</h3>
+                <p class="timeline__subtitle">B.Tech, CSE(AI/ML) | CGPA: 8.55/10.00</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Chennai, 2021-2025
+                </p>
+                <p class="text-clamp-3">Pursuing Bachelor of Technology in Computer Science and Engineering with specialization in Artificial Intelligence and Machine Learning.</p>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Sri Chaintanya Junior College</h3>
+                <p class="timeline__subtitle">MPC | Percentage: 92.4%</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Hyderabad, 2020-2021
+                </p>
+                <p class="text-clamp-2">Completed higher secondary education with Mathematics, Physics, and Chemistry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Johnson Grammar School</h3>
+                <p class="timeline__subtitle">ICSE | Percentage: 85%</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Hyderabad, 2018-2019
+                </p>
+                <p class="text-clamp-2">Completed secondary education under ICSE curriculum with strong foundation in core subjects.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Professional Experience</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item slide-in-left">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Intern at Kinara AI</h3>
+                <p class="timeline__subtitle">
+                  <i class="fas fa-building"></i>
+                  On-site | Nov 2024-May 2025
+                </p>
+                <div class="status status--info">Completed</div>
+                <ul class="timeline__list">
+                  <li>Worked extensively with kernels such as convolution, shift, element-wise kernels, and softmax for the Ara-2 processor</li>
+                  <li>Developed kernels for models with quantized input values (from float32 to int8)</li>
+                  <li>Identified and added checkers for an instruction bug, integrating the solution into the Jenkins pipeline</li>
+                  <li>Restructured the kernel library to optimize pull request execution time, reducing it from 3 hours to 10-20 minutes</li>
+                  <li>Gained hands-on experience with Gitea, Linux systems, and shell commands</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item slide-in-right">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Intern at All India Council for Technical Education</h3>
+                <p class="timeline__subtitle">
+                  <i class="fas fa-home"></i>
+                  Remote | May 2023-Jul 2023
+                </p>
+                <div class="status status--info">Completed</div>
+                <ul class="timeline__list">
+                  <li>Worked on the basic concepts of Artificial Intelligence and Machine Learning</li>
+                  <li>Learned Python functionalities in Machine Learning models and hands-on projects</li>
+                  <li>Developed foundational understanding of AI/ML algorithms and their practical applications</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item slide-in-left">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Intern at Research Centre Imarat, DRDO</h3>
+                <p class="timeline__subtitle">
+                  <i class="fas fa-building"></i>
+                  Hyderabad | June 2023-July 2023
+                </p>
+                <div class="status status--info">Completed</div>
+                <ul class="timeline__list">
+                  <li>Developed a client-server application using TCP/IP socket programming in Python</li>
+                  <li>Implemented multi-client chatting server to allow multiple clients to connect and exchange messages</li>
+                  <li>Optimized network performance by controlling socket options</li>
+                  <li>Enhanced understanding of network protocols and distributed systems</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Featured Projects</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="projects-grid">
+          <div class="project-card card fade-in" data-project="project1">
+            <div class="card__body">
+              <div class="flex items-center gap-8 mb-8">
+                <i class="fas fa-car text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">Enhanced School Zone Safety</h3>
+              </div>
+              <h4 class="project-card__subtitle expandable-text">Vehicle Speed Estimation And Geofence Based Control</h4>
+              <p class="project-card__description expandable-text">Developed a real-time vehicle speed estimation system using YOLO and DeepSORT, enhancing school zone safety through intelligent geofencing. Implemented geofence-based speed control to automatically detect and manage vehicle behavior in school zones, improving pedestrian safety.</p>
+              <div class="project-card__actions">
+                <button class="btn btn--outline btn--sm project-details-btn">
+                  <i class="fas fa-info-circle"></i>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="project-card card fade-in" data-project="project2">
+            <div class="card__body">
+              <div class="flex items-center gap-8 mb-8">
+                <i class="fas fa-heartbeat text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">Heart Disease Prediction</h3>
+              </div>
+              <p class="project-card__description expandable-text">A comprehensive prediction analysis system that evaluates the likelihood of heart disease based on user input parameters. Utilizes advanced machine learning algorithms to analyze various health metrics and provide accurate risk assessments.</p>
+              <div class="project-card__actions">
+                <button class="btn btn--outline btn--sm project-details-btn">
+                  <i class="fas fa-info-circle"></i>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="project-card card fade-in" data-project="project3">
+            <div class="card__body">
+              <div class="flex items-center gap-8 mb-8">
+                <i class="fas fa-bicycle text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">Bike Demand Prediction</h3>
+              </div>
+              <p class="project-card__description expandable-text">An advanced analytics solution based on Kaggle dataset for predicting bike rental demand across various temporal and environmental factors using multiple linear regression and feature engineering techniques.</p>
+              <div class="project-card__actions">
+                <button class="btn btn--outline btn--sm project-details-btn">
+                  <i class="fas fa-info-circle"></i>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+      <div class="modal__container">
+        <div class="modal__header">
+          <h3 class="modal__title">Project Title</h3>
+          <button class="modal__close" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal__body">
+          <p class="modal__description">Project description will appear here.</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn--outline modal__close-btn">
+            <i class="fas fa-times"></i>
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Technical Skills</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="skills-container">
+          <div class="skills-category fade-in">
+            <h3 class="skills-category__title">
+              <i class="fas fa-code"></i>
+              Programming Languages
+            </h3>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="flex justify-between items-center">
+                  <span class="skill-item__name">Python</span>
+                  <span class="text-sm text-secondary">90%</span>
+                </div>
+                <div class="skill-item__bar">
+                  <div class="skill-item__progress" style="width: 90%" data-width="90"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between items-center">
+                  <span class="skill-item__name">C</span>
+                  <span class="text-sm text-secondary">80%</span>
+                </div>
+                <div class="skill-item__bar">
+                  <div class="skill-item__progress" style="width: 80%" data-width="80"></div>
+                </div>
+              </div>
+              <div class="skill-item">
+                <div class="flex justify-between items-center">
+                  <span class="skill-item__name">C++</span>
+                  <span class="text-sm text-secondary">75%</span>
+                </div>
+                <div class="skill-item__bar">
+                  <div class="skill-item__progress" style="width: 75%" data-width="75"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="skills-category fade-in">
+            <h3 class="skills-category__title">
+              <i class="fas fa-tools"></i>
+              Tools & Technologies
+            </h3>
+            <div class="skills-tags">
+              <span class="skill-tag">
+                <i class="fas fa-chart-bar"></i>
+                Tableau
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-chart-line"></i>
+                PowerBI
+              </span>
+              <span class="skill-tag">
+                <i class="fab fa-html5"></i>
+                HTML
+              </span>
+              <span class="skill-tag">
+                <i class="fab fa-css3-alt"></i>
+                CSS
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-database"></i>
+                SQL
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-cogs"></i>
+                CMake
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-server"></i>
+                Jenkins
+              </span>
+            </div>
+          </div>
+          
+          <div class="skills-category fade-in">
+            <h3 class="skills-category__title">
+              <i class="fas fa-brain"></i>
+              Deep Learning & AI
+            </h3>
+            <div class="skills-tags">
+              <span class="skill-tag">
+                <i class="fas fa-fire"></i>
+                PyTorch
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-microchip"></i>
+                CUDA
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section" id="certifications">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Certifications & Achievements</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="certifications-grid">
+          <div class="certification-card card fade-in">
+            <div class="card__body">
+              <div class="certification-card__icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <h3 class="certification-card__title">Supervised Machine Learning</h3>
+              <p class="certification-card__issuer">
+                <i class="fas fa-graduation-cap"></i>
+                <a href="https://www.coursera.org/account/accomplishments/verify/ZHQ3LNXQMM9K" target="_blank" class="certification-link">DeepLearning.ai</a>
+              </p>
+              <p class="certification-card__description">Regression and Classification</p>
+            </div>
+          </div>
+          
+          <div class="certification-card card fade-in">
+            <div class="card__body">
+              <div class="certification-card__icon">
+                <i class="fab fa-aws"></i>
+              </div>
+              <h3 class="certification-card__title">AWS Academy Cloud Foundation</h3>
+              <p class="certification-card__issuer">
+                <i class="fas fa-cloud"></i>
+                <a href="https://www.credly.com/badges/cede16c5-4ede-4268-9cde-f4fc594d57c7/print" target="_blank" class="certification-link">Amazon Web Services</a>
+              </p>
+              <p class="certification-card__description">Cloud computing fundamentals</p>
+            </div>
+          </div>
+          
+          <div class="certification-card card fade-in">
+            <div class="card__body">
+              <div class="certification-card__icon">
+                <i class="fab fa-aws"></i>
+              </div>
+              <h3 class="certification-card__title">AWS Academy Machine Learning Foundations</h3>
+              <p class="certification-card__issuer">
+                <i class="fas fa-robot"></i>
+                <a href="https://www.credly.com/badges/8193d4e6-3a92-4ad1-a4bf-e27f5ad84793/print" target="_blank" class="certification-link">Amazon Web Services</a>
+              </p>
+              <p class="certification-card__description">ML on AWS platform</p>
+            </div>
+          </div>
+          
+          <div class="certification-card card fade-in">
+            <div class="card__body">
+              <div class="certification-card__icon">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <h3 class="certification-card__title">Network Essentials</h3>
+              <p class="certification-card__issuer">
+                <i class="fas fa-globe"></i>
+                <a href="#" target="_blank" class="certification-link">CISCO</a>
+              </p>
+              <p class="certification-card__description">Networking fundamentals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Get In Touch</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-form card fade-in">
+            <div class="card__body">
+              <h3 class="contact-form__title">
+                <i class="fas fa-paper-plane"></i>
+                Send Message
+              </h3>
+              <form id="contactForm">
+                <div class="form-group">
+                  <label for="name" class="form-label">
+                    <i class="fas fa-user"></i>
+                    Full Name *
+                  </label>
+                  <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i>
+                    Email Address *
+                  </label>
+                  <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                  <label for="subject" class="form-label">
+                    <i class="fas fa-tag"></i>
+                    Subject
+                  </label>
+                  <input type="text" id="subject" class="form-control" placeholder="Message subject">
+                </div>
+                <div class="form-group">
+                  <label for="message" class="form-label">
+                    <i class="fas fa-comment"></i>
+                    Message *
+                  </label>
+                  <textarea id="message" class="form-control" rows="5" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="button" class="btn btn--primary btn--full-width" id="sendMessageBtn">
+                  <i class="fas fa-paper-plane"></i>
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+          
+          <div class="contact-info card fade-in">
+            <div class="card__body">
+              <h3 class="contact-info__title">
+                <i class="fas fa-address-card"></i>
+                Contact Information
+              </h3>
+              <ul class="contact-info__list">
+                <li class="contact-info__item">
+                  <div class="contact-info__icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-info__text">
+                    <span class="contact-info__label">Email Address</span>
+                    <a href="mailto:saiadarsh22@gmail.com" class="contact-info__value">saiadarsh22@gmail.com</a>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-info__text">
+                    <span class="contact-info__label">Current Location</span>
+                    <span class="contact-info__value">Hyderabad, Telangana, India</span>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__icon">
+                    <i class="fas fa-graduation-cap"></i>
+                  </div>
+                  <div class="contact-info__text">
+                    <span class="contact-info__label">Education Status</span>
+                    <span class="contact-info__value">Final Year B.Tech Student</span>
+                  </div>
+                </li>
+              </ul>
+              
+              <div class="social-links">
+                <a href="https://www.linkedin.com/in/adarsh-chatlapally-1614b7285/" class="social-link" aria-label="LinkedIn Profile" target="_blank">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="GitHub Profile" target="_blank">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter Profile" target="_blank">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" aria-label="Email Contact" target="_blank">
+                  <i class="fas fa-envelope"></i>
+                </a>
+              </div>
+              
+              <div class="download-resume">
+                <button class="btn btn--primary btn--full-width" id="downloadResumeBottom">
+                  <i class="fas fa-download"></i> 
+                  Download Complete Resume
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copyright">
+          <i class="fas fa-copyright"></i>
+          2025 Adarsh. All Rights Reserved.
+        </p>
+        <div class="footer__links">
+          <a href="#about" class="footer__link">About</a>
+          <a href="#education" class="footer__link">Education</a>
+          <a href="#experience" class="footer__link">Experience</a>
+          <a href="#projects" class="footer__link">Projects</a>
+          <a href="#skills" class="footer__link">Skills</a>
+          <a href="#certifications" class="footer__link">Certifications</a>
+          <a href="#contact" class="footer__link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button with scroll progress -->
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scroll progress indicator -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+</body>
+</html>
