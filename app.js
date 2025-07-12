@@ -411,12 +411,18 @@ document.addEventListener('DOMContentLoaded', function() {
         button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing...';
         button.disabled = true;
         
-        setTimeout(() => {
-          button.innerHTML = originalText;
-          button.disabled = false;
-          
-          // Show success message
-          showNotification('Resume download would start in a real implementation!', 'info');
+        setTimeout(() => {button.innerHTML = originalText;
+        button.disabled = false;
+
+        // Trigger actual file download
+        const link = document.createElement('a');
+        link.href = 'resources/RESUME_ADARSH 3.pdf'; // <-- Change this to your actual resume file path
+        link.download = 'Adarsh_resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showNotification('Your download has started.', 'success');
         }, 1500);
       });
     }
