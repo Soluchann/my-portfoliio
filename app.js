@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Trigger actual file download
         const link = document.createElement('a');
-        link.href = 'my-portfoliio/resources/Adarsh Resume.pdf'; // <-- Change this to your actual resume file path
+        link.href = 'resources/Adarsh Resume.pdf'; // <-- Change this to your actual resume file path
         link.download = 'Adarsh Resume.pdf';
         document.body.appendChild(link);
         link.click();
