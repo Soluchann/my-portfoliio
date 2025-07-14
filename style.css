@@ -1397,7 +1397,7 @@ select.form-control {
   min-height: 100svh; /* Support for modern viewport units */
   display: flex;
   align-items: center;
-  background:rgb(31 33 33);
+  background: rgb(31 33 33), var(--color-surface) 100%);
   position: relative;
   overflow: hidden;
   padding-block: var(--space-64);
@@ -1440,7 +1440,7 @@ select.form-control {
 
 .hero__title {
   font-size: var(--font-size-2xl);
-  color: rgb(255 255 255);
+  color: rgb(255 255 255), var(--color-btn-primary-text);
   margin-bottom: var(--space-16);
   opacity: 0.9;
   text-wrap: balance;
@@ -1448,7 +1448,7 @@ select.form-control {
 
 .hero__tagline {
   font-size: var(--font-size-lg);
-    color: rgb(255 255 255);
+  color: rgb(255 255 255), var(--color-btn-primary-text);
   margin-bottom: var(--space-32);
   opacity: 0.8;
   line-height: var(--line-height-relaxed);
