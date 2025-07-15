@@ -434,64 +434,83 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Enhanced form validation and submission
   function setupContactForm() {
-    const sendMessageBtn = document.getElementById('sendMessageBtn');
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const subjectInput = document.getElementById('subject');
-    const messageInput = document.getElementById('message');
-    
-    console.log('Setting up contact form. Elements found:', {
-      sendMessageBtn: !!sendMessageBtn,
-      nameInput: !!nameInput,
-      emailInput: !!emailInput,
-      messageInput: !!messageInput
+  const sendMessageBtn = document.getElementById('sendMessageBtn');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const subjectInput = document.getElementById('subject');
+  const messageInput = document.getElementById('message');
+
+  console.log('Setting up contact form. Elements found:', {
+    sendMessageBtn: !!sendMessageBtn,
+    nameInput: !!nameInput,
+    emailInput: !!emailInput,
+    subjectInput: !!subjectInput,
+    messageInput: !!messageInput
+  });
+
+  if (sendMessageBtn && nameInput && emailInput && messageInput) {
+    const inputs = [nameInput, emailInput, messageInput];
+    inputs.forEach(input => {
+      input.addEventListener('blur', validateField);
+      input.addEventListener('input', clearFieldError);
     });
-    
-    if (sendMessageBtn && nameInput && emailInput && messageInput) {
-      // Real-time validation
-      const inputs = [nameInput, emailInput, messageInput];
+
+    sendMessageBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Send message button clicked');
+
+      let isValid = true;
       inputs.forEach(input => {
-        input.addEventListener('blur', validateField);
-        input.addEventListener('input', clearFieldError);
-      });
-
-      sendMessageBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('Send message button clicked');
-        
-        // Validate all fields
-        let isValid = true;
-        inputs.forEach(input => {
-          if (!validateField.call(input)) {
-            isValid = false;
-          }
-        });
-
-        if (!isValid) {
-          showNotification('Please correct the errors above.', 'error');
-          return;
+        if (!validateField.call(input)) {
+          isValid = false;
         }
-
-        // Simulate form submission
-        const originalText = sendMessageBtn.innerHTML;
-        sendMessageBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        sendMessageBtn.disabled = true;
-
-        setTimeout(() => {
-          sendMessageBtn.innerHTML = originalText;
-          sendMessageBtn.disabled = false;
-          
-          // Clear form
-          nameInput.value = '';
-          emailInput.value = '';
-          if (subjectInput) subjectInput.value = '';
-          messageInput.value = '';
-          
-          showNotification('Thank you for your message! This is a demo form.', 'success');
-        }, 2000);
       });
-    } else {
-      console.log('Contact form elements not found');
+
+      if (!isValid) {
+        showNotification('Please correct the errors above.', 'error');
+        return;
+      }
+
+      const formData = {
+        name: nameInput.value,
+        email: emailInput.value,
+        subject: subjectInput ? subjectInput.value : '',
+        message: messageInput.value
+      };
+
+      const originalText = sendMessageBtn.innerHTML;
+      sendMessageBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      sendMessageBtn.disabled = true;
+
+      fetch('https://script.google.com/macros/s/AKfycbw2vJAsmgKlapbDLqCY1L75gg_-OQvslL5tqeyAlmWtNWpPIHRemzRYLRvzNIB7O4AU/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Email sent:', data);
+        sendMessageBtn.innerHTML = originalText;
+        sendMessageBtn.disabled = false;
+
+        nameInput.value = '';
+        emailInput.value = '';
+        if (subjectInput) subjectInput.value = '';
+        messageInput.value = '';
+
+        showNotification('Thank you! Your message has been sent.', 'success');
+      })
+      .catch(error => {
+        console.error('Error sending message:', error);
+        sendMessageBtn.innerHTML = originalText;
+        sendMessageBtn.disabled = false;
+        showNotification('Something went wrong. Please try again later.', 'error');
+      });
+    });
+  } else {
+    console.log('Contact form elements not found');
     }
   }
 

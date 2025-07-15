@@ -2386,6 +2386,11 @@ select.form-control {
 
   .hero__inner {
     padding-inline: var(--space-12);
+    padding-left: 40px;
+    padding-right: 10px;
+    padding-top: 50px;
+    grid-template-columns: 1fr;
+    text-align: center;
     gap: var(--space-32);
   }
 
@@ -2400,6 +2405,7 @@ select.form-control {
 
   .hero__title {
     font-size: var(--font-size-md);
+    
   }
 
   .hero__tagline {
