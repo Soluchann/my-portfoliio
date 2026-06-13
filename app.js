@@ -36,23 +36,31 @@ document.addEventListener('DOMContentLoaded', function() {
   const sections = document.querySelectorAll('section');
   const projectDetailsBtns = document.querySelectorAll('.project-details-btn');
 
-  // Enhanced project data with more detailed information
+  // Projects shown in the modal
   const projectsData = [
     {
       id: 'project1',
       title: 'Enhanced School Zone Safety',
-      subtitle: 'Vehicle Speed Estimation And Geofence Based Control',
-      description: 'Developed a real-time vehicle speed estimation system using YOLO and DeepSORT, enhancing school zone safety through intelligent geofencing. Implemented geofence-based speed control to automatically detect and manage vehicle behavior in school zones, improving pedestrian safety. The system uses computer vision techniques to detect vehicles, track their movements, and estimate their speeds accurately. When vehicles enter the designated school zone (geofence), the system can trigger alerts or notifications if speed limits are exceeded, helping to enforce safety regulations more effectively. Technologies used include Python, OpenCV, YOLO object detection, DeepSORT tracking algorithm, and GPS-based geofencing systems.'
+      subtitle: 'Vehicle Speed Estimation & Geofence Control',
+      description: 'Developed a real-time vehicle speed estimation system using YOLO + DeepSORT to improve school zone safety through intelligent geofencing. The system detects and tracks vehicles, estimates speed, and can trigger alerts when vehicles exceed limits within a defined geofence. Stack: Python, OpenCV, YOLO, DeepSORT.'
     },
     {
       id: 'project2',
-      title: 'Heart Disease Prediction',
-      description: 'A comprehensive prediction analysis system that evaluates the likelihood of heart disease based on user input parameters. This project utilizes advanced machine learning algorithms to analyze various health parameters and predict the likelihood of heart disease. Features include sophisticated data visualization, model training with cross-validation techniques, and an interactive web interface for users to input their health metrics for real-time predictions. The model was trained on extensive medical datasets and achieves high accuracy in identifying potential heart conditions based on multiple risk factors including age, blood pressure, cholesterol levels, and lifestyle factors. The system provides detailed risk assessments and recommendations for further medical consultation.'
+      title: 'RAG-based Resume Chatbot',
+      subtitle: 'Retrieval-augmented Q&A over resume',
+      description: 'Built a personal RAG chatbot that answers questions grounded in my resume content. Neo4j stores semantically structured data; a backend (Hugging Face Spaces) uses sentence-transformer embeddings for retrieval; frontend mimics an LLM chat interface with prompt suggestions and dynamic input placement.'
     },
     {
       id: 'project3',
-      title: 'Bike Demand Prediction',
-      description: 'An advanced analytics solution based on Kaggle dataset for predicting bike rental demand across various temporal and environmental factors using multiple linear regression and sophisticated feature engineering techniques. This project involved extensive data preprocessing, exploratory data analysis, and statistical modeling to identify key factors affecting bike rental demand. The model considers seasonal variations, weather conditions, time-based patterns, holidays, and user demographics to provide accurate predictions. The results help bike rental companies optimize their inventory management, resource allocation, and pricing strategies based on anticipated demand fluctuations. Technologies used include Python, Pandas, Scikit-learn, Matplotlib, and Jupyter notebooks for comprehensive data analysis and visualization.'
+      title: 'GPU Kernel Framework',
+      subtitle: 'CUDA + PyTorch kernels, benchmarking, validation',
+      description: 'Built a Python framework to streamline writing custom fused CUDA kernels, validating them with test cases, and benchmarking performance vs PyTorch baselines. Packaged as a library to register shape-specific kernels as PyTorch operators and drop them into inference pipelines to reduce latency.'
+    },
+    {
+      id: 'project4',
+      title: 'AI Cover Letter Generator',
+      subtitle: 'Chrome extension + downloadable formatting',
+      description: 'Built a Chrome/Google extension that generates downloadable, well-formatted cover letters from a resume and job description. Users can provide their own LLM API key. Focused on UX, formatting quality, and practical job-application workflows.'
     }
   ];
 
@@ -701,7 +709,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Enhanced section navigation
   function navigateToNextSection(direction) {
     const currentSection = getCurrentSection();
-    const sectionIds = Array.from(sections).map(s => s.id).filter(id => id);
+    const sectionElements = Array.from(sections).filter(s => s && s.id);
+    // Use actual on-screen order (CSS reorder affects offsetTop)
+    sectionElements.sort((a, b) => a.offsetTop - b.offsetTop);
+    const sectionIds = sectionElements.map(s => s.id);
     const currentIndex = sectionIds.indexOf(currentSection);
     
     if (currentIndex !== -1) {
@@ -805,11 +816,177 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAnimations();
     setupSkillsAnimation();
     setupAccessibility();
+    setupCursorWaveGrid();
     
     // Initial calls
     handleScroll();
     
     console.log('Enhanced resume website initialized successfully!');
+  }
+
+  // Cursor-reactive wave grid overlay
+  function setupCursorWaveGrid() {
+    const canvas = document.getElementById('gridWave');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    const state = {
+      w: 0,
+      h: 0,
+      dpr: Math.max(1, Math.min(2, window.devicePixelRatio || 1)),
+      mouseX: 0,
+      mouseY: 0,
+      targetMouseX: 0,
+      targetMouseY: 0,
+      hasMouse: false,
+      t: 0,
+      rafId: 0,
+      lastTime: 0,
+    };
+
+    const prefersReduced = window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function isDarkTheme() {
+      const attr = document.documentElement.getAttribute('data-color-scheme');
+      if (attr === 'dark') return true;
+      if (attr === 'light') return false;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+
+    function resize() {
+      state.w = window.innerWidth;
+      state.h = window.innerHeight;
+      canvas.width = Math.floor(state.w * state.dpr);
+      canvas.height = Math.floor(state.h * state.dpr);
+      canvas.style.width = state.w + 'px';
+      canvas.style.height = state.h + 'px';
+    }
+
+    function setMouse(clientX, clientY) {
+      state.targetMouseX = clientX;
+      state.targetMouseY = clientY;
+      state.hasMouse = true;
+    }
+
+    window.addEventListener('mousemove', (e) => setMouse(e.clientX, e.clientY), passiveSupported ? { passive: true } : false);
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) setMouse(e.touches[0].clientX, e.touches[0].clientY);
+    }, passiveSupported ? { passive: true } : false);
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Start from center to avoid "jump" on load
+    state.mouseX = state.w / 2;
+    state.mouseY = state.h / 3;
+    state.targetMouseX = state.mouseX;
+    state.targetMouseY = state.mouseY;
+    state.hasMouse = false;
+
+    const spacing = 26; // match the CSS grid
+    const step = spacing; // draw points per cell
+    const sigma = 40; // crest radius
+    const amp = 18; // crest amplitude in px
+    const fadeRadius = 420;
+
+    function drawFrame(ts) {
+      const now = ts || performance.now();
+      const dt = Math.min(50, now - (state.lastTime || now));
+      state.lastTime = now;
+      state.t += (dt / 1000) * (prefersReduced ? 0.25 : 1);
+
+      // Smoothly follow cursor to avoid sudden crest creation.
+      const smoothFactor = prefersReduced ? 0.08 : 0.18;
+      state.mouseX += (state.targetMouseX - state.mouseX) * smoothFactor;
+      state.mouseY += (state.targetMouseY - state.mouseY) * smoothFactor;
+
+      const dpr = state.dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      // Clear
+      ctx.clearRect(0, 0, state.w, state.h);
+
+      // If user hasn't moved yet, keep it very subtle
+      const mx = state.mouseX;
+      const my = state.mouseY;
+
+      // Stroke style (monochrome, theme-aware)
+      const dark = isDarkTheme();
+      const baseAlpha = state.hasMouse ? (dark ? 0.14 : 0.08) : (dark ? 0.05 : 0.03);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = dark ? `rgba(255,255,255,${baseAlpha})` : `rgba(0,0,0,${baseAlpha})`;
+
+      // Helper: distance-based fade
+      function fade(dist) {
+        const x = Math.max(0, 1 - dist / fadeRadius);
+        return x * x; // smooth-ish fade
+      }
+
+      function crest(dx, dy) {
+        const dist = Math.sqrt(dx * dx + dy * dy) + 0.0001;
+        const g = Math.exp(-(dist * dist) / (2 * sigma * sigma));
+        // Smooth localized bulge with no oscillating ring.
+        const c = amp * g * fade(dist);
+        return { dist, c };
+      }
+
+      // Vertical grid lines
+      // Anchor the grid to the viewport (static), not to the cursor
+      const startX = -spacing * 2;
+      for (let x = startX; x <= state.w + spacing * 2; x += spacing) {
+        ctx.beginPath();
+        // sample y points
+        for (let y = -spacing * 2; y <= state.h + spacing * 2; y += step) {
+          const dx = x - mx;
+          const dy = y - my;
+          const { dist, c } = crest(dx, dy);
+          const ux = dx / dist;
+          const uy = dy / dist;
+          // Radial displacement: creates a "crest" around the cursor
+          const xx = x + ux * c;
+          const yy = y + uy * c;
+          if (y === -spacing * 2) ctx.moveTo(xx, yy);
+          else ctx.lineTo(xx, yy);
+        }
+        ctx.stroke();
+      }
+
+      // Horizontal grid lines
+      const startY = -spacing * 2;
+      for (let y = startY; y <= state.h + spacing * 2; y += spacing) {
+        ctx.beginPath();
+        for (let x = -spacing * 2; x <= state.w + spacing * 2; x += step) {
+          const dx = x - mx;
+          const dy = y - my;
+          const { dist, c } = crest(dx, dy);
+          const ux = dx / dist;
+          const uy = dy / dist;
+          const xx = x + ux * c;
+          const yy = y + uy * c;
+          if (x === -spacing * 2) ctx.moveTo(xx, yy);
+          else ctx.lineTo(xx, yy);
+        }
+        ctx.stroke();
+      }
+
+      state.rafId = window.requestAnimationFrame(drawFrame);
+    }
+
+    state.rafId = window.requestAnimationFrame(drawFrame);
+
+    // Stop animations if tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && state.rafId) {
+        window.cancelAnimationFrame(state.rafId);
+        state.rafId = 0;
+      } else if (!state.rafId) {
+        state.lastTime = 0;
+        state.rafId = window.requestAnimationFrame(drawFrame);
+      }
+    });
   }
 
   // Start initialization

@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adarsh | AI/ML Engineer</title>
+  <title>Adarsh Chatlapally | GPU Kernels • AI</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="app.js" defer></script>
 </head>
 <body>
+  <canvas id="gridWave" aria-hidden="true"></canvas>
   <header class="header">
     <div class="container">
       <div class="header__inner flex items-center justify-between">
-        <a href="#" class="logo text-ellipsis">SAC</a>
+        <a href="#home" class="logo text-ellipsis">SAC</a>
         <nav class="nav">
           <ul class="nav__list flex">
             <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
@@ -50,8 +54,8 @@
         <div class="hero__inner">
           <div class="hero__content">
             <h1 class="hero__name"><span class="typed-name"></span><span class="cursor">|</span></h1>
-            <h2 class="hero__title">AI/ML Engineer | Computer Science Student</h2>
-            <p class="hero__tagline">Building intelligent systems to solve real-world problems with cutting-edge artificial intelligence and machine learning technologies</p>
+            <h2 class="hero__title">GPU Kernels • AI/ML • Systems</h2>
+            <p class="hero__tagline">I build performant ML kernels and tooling across GPUs and accelerators — from quantized convs on embedded DSPs to fused CUDA operators for modern GenAI pipelines.</p>
             <div class="hero__actions">
               <a href="#about" class="btn btn--primary btn--lg">
                 <i class="fas fa-user"></i>
@@ -66,7 +70,7 @@
           <div class="hero__image">
             <div class="avatar">
               <div class="avatar__placeholder">
-                <img src="images\Adarsh.jpeg" alt="Adarsh's Avatar" class="avatar__img">
+                <img src="images/giphy.gif" alt="Adarsh Chatlapally" class="avatar__img">
               </div>
             </div>
           </div>
@@ -98,7 +102,9 @@
 
       const phrases = [
         "Hey!",
-        "I'm Adarsh",
+        "I’m Adarsh",
+        "GPU kernels",
+        "AI accelerators",
       ];
 
       const el = document.querySelector(".typed-name");
@@ -135,8 +141,8 @@
           <div class="section__divider"></div>
         </div>
         <div class="about__content">
-          <p>I am a Computer Science student specializing in Artificial Intelligence and Machine Learning at SRM Institute of Science and Technology. With a passion for developing intelligent solutions, I have gained practical experience through internships at Kinara AI where I worked on various projects involving Deep learning and kernel optimization.</p>
-          <p>My academic journey has equipped me with strong foundations in programming languages like Python, C, and C++, while my professional experiences have honed my skills in real-world AI/ML applications. I am particularly interested in solving complex problems through innovative technological solutions and contributing to the advancement of artificial intelligence.</p>
+          <p>Passionate and dependable engineer with experience building AI/ML kernels for accelerators and GPUs. I enjoy operating at the boundary of ML and systems: writing kernels, profiling, debugging, and shipping performance improvements that matter.</p>
+          <p>Recently, I worked on kernel development for Kinara’s Ara-2 accelerator and built a GPU kernel framework from scratch that helps teams write fused kernels, validate with test cases, and track performance wins against PyTorch baselines.</p>
         </div>
       </div>
     </section>
@@ -207,7 +213,27 @@
             <div class="timeline__marker"></div>
             <div class="card timeline__content">
               <div class="card__body">
-                <h3 class="timeline__title">Intern at Kinara AI</h3>
+                <h3 class="timeline__title">AI Engineer Intern — Dheyo AI</h3>
+                <p class="timeline__subtitle">
+                  <i class="fas fa-building"></i>
+                  Hyderabad | Sep 2025 – Mar 2026
+                </p>
+                <div class="status status--info">Completed</div>
+                <ul class="timeline__list">
+                  <li>Built a GPU kernel framework from scratch for authoring fused/performance kernels, benchmarking with test cases, and summarizing speedups vs PyTorch.</li>
+                  <li>Packaged kernel library for plug-and-play model optimization by registering shape-specific kernels as PyTorch operators.</li>
+                  <li>Optimized GenAI pipelines with fused kernels for QWEN Image 2512 and Z-Image Turbo; achieved ~1.2× vs eager without torch.compile().</li>
+                  <li>Worked with TPU pipelines and patched FlashAttention-style kernels to enable scaled runs.</li>
+                  <li>Used Nix/NixOS flakes to build pinned environments and compile from source reliably.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item slide-in-left">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Kernel Developer Intern — Kinara AI (/NXP Semiconductors)</h3>
                 <p class="timeline__subtitle">
                   <i class="fas fa-building"></i>
                   On-site | Nov 2024-May 2025
@@ -218,6 +244,7 @@
                   <li>Developed kernels for models with quantized input values (from float32 to int8)</li>
                   <li>Identified and added checkers for an instruction bug, integrating the solution into the Jenkins pipeline</li>
                   <li>Restructured the kernel library to optimize pull request execution time, reducing it from 3 hours to 10-20 minutes</li>
+                  <li>Tested element-wise and softmax kernels; debugged issues reported by the verification team</li>
                   <li>Gained hands-on experience with Gitea, Linux systems, and shell commands</li>
                 </ul>
               </div>
@@ -291,10 +318,10 @@
           <div class="project-card card fade-in" data-project="project2">
             <div class="card__body">
               <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-heartbeat text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">Heart Disease Prediction</h3>
+                <i class="fas fa-robot text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">RAG-based Resume Chatbot</h3>
               </div>
-              <p class="project-card__description expandable-text">A comprehensive prediction analysis system that evaluates the likelihood of heart disease based on user input parameters. Utilizes advanced machine learning algorithms to analyze various health metrics and provide accurate risk assessments.</p>
+              <p class="project-card__description expandable-text">Built a personal Retrieval-Augmented Generation chatbot that answers questions based on my resume using semantic retrieval and an interactive chat-style UI.</p>
               <div class="project-card__actions">
                 <button class="btn btn--outline btn--sm project-details-btn">
                   <i class="fas fa-info-circle"></i>
@@ -306,10 +333,25 @@
           <div class="project-card card fade-in" data-project="project3">
             <div class="card__body">
               <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-bicycle text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">Bike Demand Prediction</h3>
+                <i class="fas fa-bolt text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">GPU Kernel Framework</h3>
               </div>
-              <p class="project-card__description expandable-text">An advanced analytics solution based on Kaggle dataset for predicting bike rental demand across various temporal and environmental factors using multiple linear regression and feature engineering techniques.</p>
+              <p class="project-card__description expandable-text">Python framework to author, benchmark, and validate custom CUDA kernels and optimize model inference by registering fused operators as PyTorch ops.</p>
+              <div class="project-card__actions">
+                <button class="btn btn--outline btn--sm project-details-btn">
+                  <i class="fas fa-info-circle"></i>
+                  View Details
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="project-card card fade-in" data-project="project4">
+            <div class="card__body">
+              <div class="flex items-center gap-8 mb-8">
+                <i class="fas fa-file-signature text-primary" style="font-size: 1.5rem;"></i>
+                <h3 class="project-card__title m-0">AI Cover Letter Generator</h3>
+              </div>
+              <p class="project-card__description expandable-text">Google extension to generate downloadable, well-formatted cover letters from a resume + job description, using the user’s own LLM API key.</p>
               <div class="project-card__actions">
                 <button class="btn btn--outline btn--sm project-details-btn">
                   <i class="fas fa-info-circle"></i>
@@ -392,24 +434,16 @@
             </h3>
             <div class="skills-tags">
               <span class="skill-tag">
-                <i class="fas fa-chart-bar"></i>
-                Tableau
+                <i class="fab fa-git-alt"></i>
+                Git
               </span>
               <span class="skill-tag">
-                <i class="fas fa-chart-line"></i>
-                PowerBI
+                <i class="fas fa-terminal"></i>
+                Linux
               </span>
               <span class="skill-tag">
-                <i class="fab fa-html5"></i>
-                HTML
-              </span>
-              <span class="skill-tag">
-                <i class="fab fa-css3-alt"></i>
-                CSS
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-database"></i>
-                SQL
+                <i class="fas fa-code"></i>
+                VS Code
               </span>
               <span class="skill-tag">
                 <i class="fas fa-cogs"></i>
@@ -418,6 +452,14 @@
               <span class="skill-tag">
                 <i class="fas fa-server"></i>
                 Jenkins
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-bug"></i>
+                GDB / Debuggers
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-microchip"></i>
+                Embedded Design
               </span>
             </div>
           </div>
@@ -435,6 +477,14 @@
               <span class="skill-tag">
                 <i class="fas fa-microchip"></i>
                 CUDA
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-project-diagram"></i>
+                CNN / GenAI Models
+              </span>
+              <span class="skill-tag">
+                <i class="fas fa-sitemap"></i>
+                Data Structures & Algorithms
               </span>
             </div>
           </div>
@@ -569,6 +619,15 @@
               <ul class="contact-info__list">
                 <li class="contact-info__item">
                   <div class="contact-info__icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="contact-info__text">
+                    <span class="contact-info__label">Phone</span>
+                    <a href="tel:+916304358472" class="contact-info__value">+91 6304358472</a>
+                  </div>
+                </li>
+                <li class="contact-info__item">
+                  <div class="contact-info__icon">
                     <i class="fas fa-envelope"></i>
                   </div>
                   <div class="contact-info__text">
@@ -591,7 +650,7 @@
                   </div>
                   <div class="contact-info__text">
                     <span class="contact-info__label">Education Status</span>
-                    <span class="contact-info__value">Final Year B.Tech Student</span>
+                    <span class="contact-info__value">B.Tech CSE (AI/ML) — SRM Institute of Science and Technology</span>
                   </div>
                 </li>
               </ul>
@@ -629,7 +688,7 @@
       <div class="footer__inner">
         <p class="footer__copyright">
           <i class="fas fa-copyright"></i>
-          2025 Adarsh. All Rights Reserved.
+          2026 Adarsh Chatlapally. All Rights Reserved.
         </p>
         <div class="footer__links">
           <a href="#about" class="footer__link">About</a>
