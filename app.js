@@ -27,42 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.nav');
   const themeToggle = document.querySelector('.theme-toggle');
-  const projectCards = document.querySelectorAll('.project-card');
-  const modal = document.getElementById('projectModal');
-  const modalTitle = document.querySelector('.modal__title');
-  const modalDescription = document.querySelector('.modal__description');
-  const modalCloseBtns = document.querySelectorAll('.modal__close, .modal__close-btn');
   const backToTopBtn = document.querySelector('.back-to-top');
   const sections = document.querySelectorAll('section');
-  const projectDetailsBtns = document.querySelectorAll('.project-details-btn');
-
-  // Projects shown in the modal
-  const projectsData = [
-    {
-      id: 'project1',
-      title: 'Enhanced School Zone Safety',
-      subtitle: 'Vehicle Speed Estimation & Geofence Control',
-      description: 'Developed a real-time vehicle speed estimation system using YOLO + DeepSORT to improve school zone safety through intelligent geofencing. The system detects and tracks vehicles, estimates speed, and can trigger alerts when vehicles exceed limits within a defined geofence. Stack: Python, OpenCV, YOLO, DeepSORT.'
-    },
-    {
-      id: 'project2',
-      title: 'RAG-based Resume Chatbot',
-      subtitle: 'Retrieval-augmented Q&A over resume',
-      description: 'Built a personal RAG chatbot that answers questions grounded in my resume content. Neo4j stores semantically structured data; a backend (Hugging Face Spaces) uses sentence-transformer embeddings for retrieval; frontend mimics an LLM chat interface with prompt suggestions and dynamic input placement.'
-    },
-    {
-      id: 'project3',
-      title: 'GPU Kernel Framework',
-      subtitle: 'CUDA + PyTorch kernels, benchmarking, validation',
-      description: 'Built a Python framework to streamline writing custom fused CUDA kernels, validating them with test cases, and benchmarking performance vs PyTorch baselines. Packaged as a library to register shape-specific kernels as PyTorch operators and drop them into inference pipelines to reduce latency.'
-    },
-    {
-      id: 'project4',
-      title: 'AI Cover Letter Generator',
-      subtitle: 'Chrome extension + downloadable formatting',
-      description: 'Built a Chrome/Google extension that generates downloadable, well-formatted cover letters from a resume and job description. Users can provide their own LLM API key. Focused on UX, formatting quality, and practical job-application workflows.'
-    }
-  ];
 
   // Enhanced theme management with system preference detection (removed localStorage)
   function initializeTheme() {
@@ -191,98 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-
-  // Enhanced Modal functionality with keyboard navigation
-  function openModal(projectId) {
-    console.log('Opening modal for project:', projectId);
-    const projectData = projectsData.find(function(p) { return p.id === projectId; });
-    
-    if (projectData && modal && modalTitle && modalDescription) {
-      modalTitle.textContent = projectData.title;
-      modalDescription.textContent = projectData.description;
-      modal.classList.add('active');
-      body.style.overflow = 'hidden';
-      
-      // Focus management for accessibility
-      const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (firstFocusable) {
-        setTimeout(() => firstFocusable.focus(), 100);
-      }
-      
-      console.log('Modal opened successfully');
-    }
-  }
-
-  function closeModal() {
-    console.log('Closing modal');
-    if (modal) {
-      modal.classList.remove('active');
-      body.style.overflow = '';
-      
-      // Return focus to triggering element
-      const activeCard = document.querySelector('.project-card:focus, .project-details-btn:focus');
-      if (activeCard) {
-        activeCard.focus();
-      }
-    }
-  }
-
-  // Enhanced project interaction with keyboard support
-  projectDetailsBtns.forEach(function(btn, index) {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const card = btn.closest('.project-card');
-      if (card) {
-        const projectId = card.getAttribute('data-project');
-        openModal(projectId);
-      }
-    });
-
-    // Add keyboard support
-    btn.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
-      }
-    });
-  });
-
-  // Enhanced project cards with better interaction
-  projectCards.forEach(function(card, index) {
-    // Make cards keyboard navigable
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('role', 'button');
-    card.setAttribute('aria-label', 'View project details');
-
-    card.addEventListener('click', function() {
-      const projectId = card.getAttribute('data-project');
-      openModal(projectId);
-    });
-
-    card.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
-      }
-    });
-  });
-
-  // Enhanced modal close functionality
-  modalCloseBtns.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      closeModal();
-    });
-  });
-
-  // Enhanced modal backdrop click
-  if (modal) {
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-  }
 
   // Enhanced scroll functionality with throttling
   let scrollTimeout;
@@ -440,141 +314,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const downloadBtns = document.querySelectorAll('#downloadResume, #downloadResumeBottom, .download-resume .btn');
   downloadBtns.forEach(setupDownloadButton);
 
-  // Enhanced form validation and submission
-  function setupContactForm() {
-  const sendMessageBtn = document.getElementById('sendMessageBtn');
-  const nameInput = document.getElementById('name');
-  const emailInput = document.getElementById('email');
-  const subjectInput = document.getElementById('subject');
-  const messageInput = document.getElementById('message');
-
-  console.log('Setting up contact form. Elements found:', {
-    sendMessageBtn: !!sendMessageBtn,
-    nameInput: !!nameInput,
-    emailInput: !!emailInput,
-    subjectInput: !!subjectInput,
-    messageInput: !!messageInput
-  });
-
-  if (sendMessageBtn && nameInput && emailInput && messageInput) {
-    const inputs = [nameInput, emailInput, messageInput];
-    inputs.forEach(input => {
-      input.addEventListener('blur', validateField);
-      input.addEventListener('input', clearFieldError);
-    });
-
-    sendMessageBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('Send message button clicked');
-
-      let isValid = true;
-      inputs.forEach(input => {
-        if (!validateField.call(input)) {
-          isValid = false;
-        }
-      });
-
-      if (!isValid) {
-        showNotification('Please correct the errors above.', 'error');
-        return;
-      }
-
-      const formData = {
-        name: nameInput.value,
-        email: emailInput.value,
-        subject: subjectInput ? subjectInput.value : '',
-        message: messageInput.value
-      };
-
-      const originalText = sendMessageBtn.innerHTML;
-      sendMessageBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-      sendMessageBtn.disabled = true;
-
-      fetch('https://script.google.com/macros/s/AKfycbw2vJAsmgKlapbDLqCY1L75gg_-OQvslL5tqeyAlmWtNWpPIHRemzRYLRvzNIB7O4AU/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Email sent:', data);
-        sendMessageBtn.innerHTML = originalText;
-        sendMessageBtn.disabled = false;
-
-        nameInput.value = '';
-        emailInput.value = '';
-        if (subjectInput) subjectInput.value = '';
-        messageInput.value = '';
-
-        showNotification('Thank you! Your message has been sent.', 'success');
-      })
-      .catch(error => {
-        console.error('Error sending message:', error);
-        sendMessageBtn.innerHTML = originalText;
-        sendMessageBtn.disabled = false;
-        showNotification('Something went wrong. Please try again later.', 'error');
-      });
-    });
-  } else {
-    console.log('Contact form elements not found');
-    }
-  }
-
-  // Enhanced field validation
-  function validateField() {
-    const field = this;
-    const value = field.value.trim();
-    let isValid = true;
-    let errorMessage = '';
-
-    // Remove existing error
-    clearFieldError.call(field);
-
-    if (field.hasAttribute('required') && !value) {
-      errorMessage = 'This field is required.';
-      isValid = false;
-    } else if (field.type === 'email' && value) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(value)) {
-        errorMessage = 'Please enter a valid email address.';
-        isValid = false;
-      }
-    } else if (field.id === 'name' && value && value.length < 2) {
-      errorMessage = 'Name must be at least 2 characters long.';
-      isValid = false;
-    } else if (field.id === 'message' && value && value.length < 10) {
-      errorMessage = 'Message must be at least 10 characters long.';
-      isValid = false;
-    }
-
-    if (!isValid) {
-      showFieldError(field, errorMessage);
-    }
-
-    return isValid;
-  }
-
-  function showFieldError(field, message) {
-    field.classList.add('error');
-    let errorElement = field.parentNode.querySelector('.field-error');
-    if (!errorElement) {
-      errorElement = document.createElement('div');
-      errorElement.className = 'field-error';
-      field.parentNode.appendChild(errorElement);
-    }
-    errorElement.textContent = message;
-  }
-
-  function clearFieldError() {
-    this.classList.remove('error');
-    const errorElement = this.parentNode.querySelector('.field-error');
-    if (errorElement) {
-      errorElement.remove();
-    }
-  }
-
   // Enhanced notification system
   function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
@@ -653,41 +392,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Enhanced skills animation
-  function setupSkillsAnimation() {
-    const skillBars = document.querySelectorAll('.skill-item__progress');
-    
-    if ('IntersectionObserver' in window) {
-      const skillObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            const bar = entry.target;
-            const width = bar.style.width;
-            bar.style.width = '0%';
-            
-            setTimeout(function() {
-              bar.style.transition = 'width 1.5s ease-in-out';
-              bar.style.width = width;
-            }, 200);
-            
-            skillObserver.unobserve(bar);
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      skillBars.forEach(function(bar) {
-        skillObserver.observe(bar);
-      });
-    }
-  }
-
   // Enhanced keyboard navigation
   document.addEventListener('keydown', function(e) {
-    // Close modal with Escape key
     if (e.key === 'Escape') {
-      if (modal && modal.classList.contains('active')) {
-        closeModal();
-      } else if (nav && nav.classList.contains('active')) {
+      if (nav && nav.classList.contains('active')) {
         nav.classList.remove('active');
         menuToggle.classList.remove('active');
         body.style.overflow = '';
@@ -812,9 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Initializing enhanced resume website...');
     
     initializeTheme();
-    setupContactForm();
     setupAnimations();
-    setupSkillsAnimation();
     setupAccessibility();
     setupCursorWaveGrid();
     

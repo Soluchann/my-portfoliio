@@ -9,6 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/gifler@0.1.0/gifler.min.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+      }
+    }
+  </script>
+  <script type="module" src="image-ripple.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
+  <script src="experience-stack.js" defer></script>
+  <script src="projects-hscroll.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -70,7 +82,14 @@
           <div class="hero__image">
             <div class="avatar">
               <div class="avatar__placeholder">
-                <img src="images/giphy.gif" alt="Adarsh Chatlapally" class="avatar__img">
+                <div class="avatar-ripple" id="avatarRipple">
+                  <img
+                    src="images/giphy.gif"
+                    alt="Adarsh Chatlapally"
+                    class="avatar__img avatar-ripple__source"
+                    id="avatarGif"
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -202,36 +221,50 @@
     </section>
 
     <!-- Experience Section -->
-    <section class="section" id="experience">
+    <section class="section section--experience-stack" id="experience">
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">Professional Experience</h2>
           <div class="section__divider"></div>
         </div>
-        <div class="timeline">
-          <div class="timeline__item slide-in-left">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
+        <div class="stack-cards" id="experienceStack">
+          <div class="stack-cards__item">
+            <article class="stack-card card timeline__content" style="--stack-accent: #ed649e;">
               <div class="card__body">
-                <h3 class="timeline__title">AI Engineer Intern — Dheyo AI</h3>
+                <h3 class="timeline__title">Intern at Research Centre Imarat, DRDO</h3>
                 <p class="timeline__subtitle">
                   <i class="fas fa-building"></i>
-                  Hyderabad | Sep 2025 – Mar 2026
+                  Hyderabad | June 2023-July 2023
                 </p>
                 <div class="status status--info">Completed</div>
                 <ul class="timeline__list">
-                  <li>Built a GPU kernel framework from scratch for authoring fused/performance kernels, benchmarking with test cases, and summarizing speedups vs PyTorch.</li>
-                  <li>Packaged kernel library for plug-and-play model optimization by registering shape-specific kernels as PyTorch operators.</li>
-                  <li>Optimized GenAI pipelines with fused kernels for QWEN Image 2512 and Z-Image Turbo; achieved ~1.2× vs eager without torch.compile().</li>
-                  <li>Worked with TPU pipelines and patched FlashAttention-style kernels to enable scaled runs.</li>
-                  <li>Used Nix/NixOS flakes to build pinned environments and compile from source reliably.</li>
+                  <li>Developed a client-server application using TCP/IP socket programming in Python</li>
+                  <li>Implemented multi-client chatting server to allow multiple clients to connect and exchange messages</li>
+                  <li>Optimized network performance by controlling socket options</li>
+                  <li>Enhanced understanding of network protocols and distributed systems</li>
                 </ul>
               </div>
-            </div>
+            </article>
           </div>
-          <div class="timeline__item slide-in-left">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
+          <div class="stack-cards__item">
+            <article class="stack-card card timeline__content" style="--stack-accent: #8f89ff;">
+              <div class="card__body">
+                <h3 class="timeline__title">Intern at All India Council for Technical Education</h3>
+                <p class="timeline__subtitle">
+                  <i class="fas fa-home"></i>
+                  Remote | May 2023-Jul 2023
+                </p>
+                <div class="status status--info">Completed</div>
+                <ul class="timeline__list">
+                  <li>Worked on the basic concepts of Artificial Intelligence and Machine Learning</li>
+                  <li>Learned Python functionalities in Machine Learning models and hands-on projects</li>
+                  <li>Developed foundational understanding of AI/ML algorithms and their practical applications</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="stack-cards__item">
+            <article class="stack-card card timeline__content" style="--stack-accent: #5196fd;">
               <div class="card__body">
                 <h3 class="timeline__title">Kernel Developer Intern — Kinara AI (/NXP Semiconductors)</h3>
                 <p class="timeline__subtitle">
@@ -248,140 +281,98 @@
                   <li>Gained hands-on experience with Gitea, Linux systems, and shell commands</li>
                 </ul>
               </div>
-            </div>
+            </article>
           </div>
-          <div class="timeline__item slide-in-right">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
+          <div class="stack-cards__item">
+            <article class="stack-card card timeline__content" style="--stack-accent: #21808d;">
               <div class="card__body">
-                <h3 class="timeline__title">Intern at All India Council for Technical Education</h3>
-                <p class="timeline__subtitle">
-                  <i class="fas fa-home"></i>
-                  Remote | May 2023-Jul 2023
-                </p>
-                <div class="status status--info">Completed</div>
-                <ul class="timeline__list">
-                  <li>Worked on the basic concepts of Artificial Intelligence and Machine Learning</li>
-                  <li>Learned Python functionalities in Machine Learning models and hands-on projects</li>
-                  <li>Developed foundational understanding of AI/ML algorithms and their practical applications</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="timeline__item slide-in-left">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
-              <div class="card__body">
-                <h3 class="timeline__title">Intern at Research Centre Imarat, DRDO</h3>
+                <h3 class="timeline__title">AI Engineer Intern — Dheyo AI</h3>
                 <p class="timeline__subtitle">
                   <i class="fas fa-building"></i>
-                  Hyderabad | June 2023-July 2023
+                  Hyderabad | Sep 2025 – Mar 2026
                 </p>
                 <div class="status status--info">Completed</div>
                 <ul class="timeline__list">
-                  <li>Developed a client-server application using TCP/IP socket programming in Python</li>
-                  <li>Implemented multi-client chatting server to allow multiple clients to connect and exchange messages</li>
-                  <li>Optimized network performance by controlling socket options</li>
-                  <li>Enhanced understanding of network protocols and distributed systems</li>
+                  <li>Built a GPU kernel framework from scratch for authoring fused/performance kernels, benchmarking with test cases, and summarizing speedups vs PyTorch.</li>
+                  <li>Packaged kernel library for plug-and-play model optimization by registering shape-specific kernels as PyTorch operators.</li>
+                  <li>Optimized GenAI pipelines with fused kernels for QWEN Image 2512 and Z-Image Turbo; achieved ~1.2× vs eager without torch.compile().</li>
+                  <li>Worked with TPU pipelines and patched FlashAttention-style kernels to enable scaled runs.</li>
+                  <li>Used Nix/NixOS flakes to build pinned environments and compile from source reliably.</li>
                 </ul>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="section" id="projects">
+    <section class="section section--projects-hscroll" id="projects">
       <div class="container">
         <div class="section__header">
           <h2 class="section__title">Featured Projects</h2>
           <div class="section__divider"></div>
         </div>
-        <div class="projects-grid">
-          <div class="project-card card fade-in" data-project="project1">
-            <div class="card__body">
-              <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-car text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">Enhanced School Zone Safety</h3>
-              </div>
-              <h4 class="project-card__subtitle expandable-text">Vehicle Speed Estimation And Geofence Based Control</h4>
-              <p class="project-card__description expandable-text">Developed a real-time vehicle speed estimation system using YOLO and DeepSORT, enhancing school zone safety through intelligent geofencing. Implemented geofence-based speed control to automatically detect and manage vehicle behavior in school zones, improving pedestrian safety.</p>
-              <div class="project-card__actions">
-                <button class="btn btn--outline btn--sm project-details-btn">
-                  <i class="fas fa-info-circle"></i>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="project-card card fade-in" data-project="project2">
-            <div class="card__body">
-              <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-robot text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">RAG-based Resume Chatbot</h3>
-              </div>
-              <p class="project-card__description expandable-text">Built a personal Retrieval-Augmented Generation chatbot that answers questions based on my resume using semantic retrieval and an interactive chat-style UI.</p>
-              <div class="project-card__actions">
-                <button class="btn btn--outline btn--sm project-details-btn">
-                  <i class="fas fa-info-circle"></i>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="project-card card fade-in" data-project="project3">
-            <div class="card__body">
-              <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-bolt text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">GPU Kernel Framework</h3>
-              </div>
-              <p class="project-card__description expandable-text">Python framework to author, benchmark, and validate custom CUDA kernels and optimize model inference by registering fused operators as PyTorch ops.</p>
-              <div class="project-card__actions">
-                <button class="btn btn--outline btn--sm project-details-btn">
-                  <i class="fas fa-info-circle"></i>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="project-card card fade-in" data-project="project4">
-            <div class="card__body">
-              <div class="flex items-center gap-8 mb-8">
-                <i class="fas fa-file-signature text-primary" style="font-size: 1.5rem;"></i>
-                <h3 class="project-card__title m-0">AI Cover Letter Generator</h3>
-              </div>
-              <p class="project-card__description expandable-text">Google extension to generate downloadable, well-formatted cover letters from a resume + job description, using the user’s own LLM API key.</p>
-              <div class="project-card__actions">
-                <button class="btn btn--outline btn--sm project-details-btn">
-                  <i class="fas fa-info-circle"></i>
-                  View Details
-                </button>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="projects-hscroll" id="projectsHScroll">
+        <div class="projects-hscroll__sticky">
+          <ul class="projects-hscroll__list">
+            <li class="projects-hscroll__panel">
+              <span class="logo projects-hscroll__label" aria-hidden="true">SAFETY</span>
+              <article class="project-card card">
+                <div class="card__body">
+                  <div class="flex items-center gap-8 mb-8">
+                    <i class="fas fa-car text-primary" style="font-size: 1.5rem;"></i>
+                    <h3 class="project-card__title m-0">Enhanced School Zone Safety</h3>
+                  </div>
+                  <h4 class="project-card__subtitle">Vehicle Speed Estimation &amp; Geofence Control</h4>
+                  <p class="project-card__description">Developed a real-time vehicle speed estimation system using YOLO + DeepSORT to improve school zone safety through intelligent geofencing. The system detects and tracks vehicles, estimates speed, and can trigger alerts when vehicles exceed limits within a defined geofence. Stack: Python, OpenCV, YOLO, DeepSORT.</p>
+                </div>
+              </article>
+            </li>
+            <li class="projects-hscroll__panel">
+              <span class="logo projects-hscroll__label" aria-hidden="true">CHATBOT</span>
+              <article class="project-card card">
+                <div class="card__body">
+                  <div class="flex items-center gap-8 mb-8">
+                    <i class="fas fa-robot text-primary" style="font-size: 1.5rem;"></i>
+                    <h3 class="project-card__title m-0">RAG-based Resume Chatbot</h3>
+                  </div>
+                  <h4 class="project-card__subtitle">Retrieval-augmented Q&amp;A over resume</h4>
+                  <p class="project-card__description">Built a personal RAG chatbot that answers questions grounded in my resume content. Neo4j stores semantically structured data; a backend (Hugging Face Spaces) uses sentence-transformer embeddings for retrieval; frontend mimics an LLM chat interface with prompt suggestions and dynamic input placement.</p>
+                </div>
+              </article>
+            </li>
+            <li class="projects-hscroll__panel">
+              <span class="logo projects-hscroll__label" aria-hidden="true">KERNELS</span>
+              <article class="project-card card">
+                <div class="card__body">
+                  <div class="flex items-center gap-8 mb-8">
+                    <i class="fas fa-bolt text-primary" style="font-size: 1.5rem;"></i>
+                    <h3 class="project-card__title m-0">GPU Kernel Framework</h3>
+                  </div>
+                  <h4 class="project-card__subtitle">CUDA + PyTorch kernels, benchmarking, validation</h4>
+                  <p class="project-card__description">Built a Python framework to streamline writing custom fused CUDA kernels, validating them with test cases, and benchmarking performance vs PyTorch baselines. Packaged as a library to register shape-specific kernels as PyTorch operators and drop them into inference pipelines to reduce latency.</p>
+                </div>
+              </article>
+            </li>
+            <li class="projects-hscroll__panel">
+              <span class="logo projects-hscroll__label" aria-hidden="true">COVER</span>
+              <article class="project-card card">
+                <div class="card__body">
+                  <div class="flex items-center gap-8 mb-8">
+                    <i class="fas fa-file-signature text-primary" style="font-size: 1.5rem;"></i>
+                    <h3 class="project-card__title m-0">AI Cover Letter Generator</h3>
+                  </div>
+                  <h4 class="project-card__subtitle">Chrome extension + downloadable formatting</h4>
+                  <p class="project-card__description">Built a Chrome/Google extension that generates downloadable, well-formatted cover letters from a resume and job description. Users can provide their own LLM API key. Focused on UX, formatting quality, and practical job-application workflows.</p>
+                </div>
+              </article>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
-
-    <!-- Project Modal -->
-    <div class="modal" id="projectModal">
-      <div class="modal__container">
-        <div class="modal__header">
-          <h3 class="modal__title">Project Title</h3>
-          <button class="modal__close" aria-label="Close modal">&times;</button>
-        </div>
-        <div class="modal__body">
-          <p class="modal__description">Project description will appear here.</p>
-        </div>
-        <div class="modal__footer">
-          <button class="btn btn--outline modal__close-btn">
-            <i class="fas fa-times"></i>
-            Close
-          </button>
-        </div>
-      </div>
-    </div>
 
     <!-- Skills Section -->
     <section class="section" id="skills">
@@ -390,103 +381,50 @@
           <h2 class="section__title">Technical Skills</h2>
           <div class="section__divider"></div>
         </div>
-        <div class="skills-container">
-          <div class="skills-category fade-in">
-            <h3 class="skills-category__title">
-              <i class="fas fa-code"></i>
-              Programming Languages
-            </h3>
-            <div class="skills-list">
-              <div class="skill-item">
-                <div class="flex justify-between items-center">
-                  <span class="skill-item__name">Python</span>
-                  <span class="text-sm text-secondary">90%</span>
-                </div>
-                <div class="skill-item__bar">
-                  <div class="skill-item__progress" style="width: 90%" data-width="90"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between items-center">
-                  <span class="skill-item__name">C</span>
-                  <span class="text-sm text-secondary">80%</span>
-                </div>
-                <div class="skill-item__bar">
-                  <div class="skill-item__progress" style="width: 80%" data-width="80"></div>
-                </div>
-              </div>
-              <div class="skill-item">
-                <div class="flex justify-between items-center">
-                  <span class="skill-item__name">C++</span>
-                  <span class="text-sm text-secondary">75%</span>
-                </div>
-                <div class="skill-item__bar">
-                  <div class="skill-item__progress" style="width: 75%" data-width="75"></div>
-                </div>
-              </div>
-            </div>
+      </div>
+      <div class="skills-marquees">
+        <div class="infinity-brand infinity-brand--reverse fade-in">
+          <div class="infinity-brand__inner">
+            <ul class="infinity-brand__group">
+              <li class="infinity-brand__item"><i class="fab fa-python"></i> Python</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> C</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> C++</li>
+              <li class="infinity-brand__item"><i class="fab fa-git-alt"></i> Git</li>
+              <li class="infinity-brand__item"><i class="fas fa-terminal"></i> Linux</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> VS Code</li>
+              <li class="infinity-brand__item"><i class="fas fa-cogs"></i> CMake</li>
+              <li class="infinity-brand__item"><i class="fas fa-server"></i> Jenkins</li>
+              <li class="infinity-brand__item"><i class="fas fa-bug"></i> GDB / Debuggers</li>
+              <li class="infinity-brand__item"><i class="fas fa-microchip"></i> Embedded Design</li>
+            </ul>
+            <ul class="infinity-brand__group" aria-hidden="true">
+              <li class="infinity-brand__item"><i class="fab fa-python"></i> Python</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> C</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> C++</li>
+              <li class="infinity-brand__item"><i class="fab fa-git-alt"></i> Git</li>
+              <li class="infinity-brand__item"><i class="fas fa-terminal"></i> Linux</li>
+              <li class="infinity-brand__item"><i class="fas fa-code"></i> VS Code</li>
+              <li class="infinity-brand__item"><i class="fas fa-cogs"></i> CMake</li>
+              <li class="infinity-brand__item"><i class="fas fa-server"></i> Jenkins</li>
+              <li class="infinity-brand__item"><i class="fas fa-bug"></i> GDB / Debuggers</li>
+              <li class="infinity-brand__item"><i class="fas fa-microchip"></i> Embedded Design</li>
+            </ul>
           </div>
-          
-          <div class="skills-category fade-in">
-            <h3 class="skills-category__title">
-              <i class="fas fa-tools"></i>
-              Tools & Technologies
-            </h3>
-            <div class="skills-tags">
-              <span class="skill-tag">
-                <i class="fab fa-git-alt"></i>
-                Git
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-terminal"></i>
-                Linux
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-code"></i>
-                VS Code
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-cogs"></i>
-                CMake
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-server"></i>
-                Jenkins
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-bug"></i>
-                GDB / Debuggers
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-microchip"></i>
-                Embedded Design
-              </span>
-            </div>
-          </div>
-          
-          <div class="skills-category fade-in">
-            <h3 class="skills-category__title">
-              <i class="fas fa-brain"></i>
-              Deep Learning & AI
-            </h3>
-            <div class="skills-tags">
-              <span class="skill-tag">
-                <i class="fas fa-fire"></i>
-                PyTorch
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-microchip"></i>
-                CUDA
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-project-diagram"></i>
-                CNN / GenAI Models
-              </span>
-              <span class="skill-tag">
-                <i class="fas fa-sitemap"></i>
-                Data Structures & Algorithms
-              </span>
-            </div>
+        </div>
+        <div class="infinity-brand fade-in">
+          <div class="infinity-brand__inner">
+            <ul class="infinity-brand__group">
+              <li class="infinity-brand__item"><i class="fas fa-fire"></i> PyTorch</li>
+              <li class="infinity-brand__item"><i class="fas fa-microchip"></i> CUDA</li>
+              <li class="infinity-brand__item"><i class="fas fa-project-diagram"></i> CNN / GenAI Models</li>
+              <li class="infinity-brand__item"><i class="fas fa-sitemap"></i> Data Structures & Algorithms</li>
+            </ul>
+            <ul class="infinity-brand__group" aria-hidden="true">
+              <li class="infinity-brand__item"><i class="fas fa-fire"></i> PyTorch</li>
+              <li class="infinity-brand__item"><i class="fas fa-microchip"></i> CUDA</li>
+              <li class="infinity-brand__item"><i class="fas fa-project-diagram"></i> CNN / GenAI Models</li>
+              <li class="infinity-brand__item"><i class="fas fa-sitemap"></i> Data Structures & Algorithms</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -567,49 +505,6 @@
           <div class="section__divider"></div>
         </div>
         <div class="contact-grid">
-          <div class="contact-form card fade-in">
-            <div class="card__body">
-              <h3 class="contact-form__title">
-                <i class="fas fa-paper-plane"></i>
-                Send Message
-              </h3>
-              <form id="contactForm">
-                <div class="form-group">
-                  <label for="name" class="form-label">
-                    <i class="fas fa-user"></i>
-                    Full Name *
-                  </label>
-                  <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                  <label for="email" class="form-label">
-                    <i class="fas fa-envelope"></i>
-                    Email Address *
-                  </label>
-                  <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
-                </div>
-                <div class="form-group">
-                  <label for="subject" class="form-label">
-                    <i class="fas fa-tag"></i>
-                    Subject
-                  </label>
-                  <input type="text" id="subject" class="form-control" placeholder="Message subject">
-                </div>
-                <div class="form-group">
-                  <label for="message" class="form-label">
-                    <i class="fas fa-comment"></i>
-                    Message *
-                  </label>
-                  <textarea id="message" class="form-control" rows="5" placeholder="Type your message here..." required></textarea>
-                </div>
-                <button type="button" class="btn btn--primary btn--full-width" id="sendMessageBtn">
-                  <i class="fas fa-paper-plane"></i>
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-          
           <div class="contact-info card fade-in">
             <div class="card__body">
               <h3 class="contact-info__title">
