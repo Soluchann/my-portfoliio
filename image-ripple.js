@@ -219,12 +219,6 @@ class ImageRippleEffect {
   bindEvents() {
     this.container.addEventListener('mousemove', this.onMouseMove);
     window.addEventListener('resize', this.onResize);
-
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    this.rippleEnabled = !reducedMotion.matches;
-    reducedMotion.addEventListener('change', (event) => {
-      this.rippleEnabled = !event.matches;
-    });
   }
 
   onMouseMove(event) {

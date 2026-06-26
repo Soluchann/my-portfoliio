@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adarsh Chatlapally | GPU Kernels • AI</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=7">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -18,9 +18,11 @@
     }
   </script>
   <script type="module" src="image-ripple.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
-  <script src="experience-stack.js" defer></script>
-  <script src="projects-hscroll.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/TextPlugin.min.js"></script>
+  <script src="experience-stack.js?v=9" defer></script>
+  <script src="projects-hscroll.js?v=9" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -96,11 +98,6 @@
         </div>
       </div>
     </section>
-    <!-- GSAP Scripts -->
-    <!-- GSAP Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/TextPlugin.min.js"></script>
-
     <style>
       .cursor {
         display: inline-block;
@@ -162,60 +159,6 @@
         <div class="about__content">
           <p>Passionate and dependable engineer with experience building AI/ML kernels for accelerators and GPUs. I enjoy operating at the boundary of ML and systems: writing kernels, profiling, debugging, and shipping performance improvements that matter.</p>
           <p>Recently, I worked on kernel development for Kinara’s Ara-2 accelerator and built a GPU kernel framework from scratch that helps teams write fused kernels, validate with test cases, and track performance wins against PyTorch baselines.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="section" id="education">
-      <div class="container">
-        <div class="section__header">
-          <h2 class="section__title">Education</h2>
-          <div class="section__divider"></div>
-        </div>
-        <div class="timeline">
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
-              <div class="card__body">
-                <h3 class="timeline__title">SRM Institute Of Science and Technology</h3>
-                <p class="timeline__subtitle">B.Tech, CSE(AI/ML) | CGPA: 8.16/10.00</p>
-                <p class="timeline__period">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Chennai, 2021-2025
-                </p>
-                <p class="text-clamp-3">Pursuing Bachelor of Technology in Computer Science and Engineering with specialization in Artificial Intelligence and Machine Learning.</p>
-              </div>
-            </div>
-          </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
-              <div class="card__body">
-                <h3 class="timeline__title">Sri Chaintanya Junior College</h3>
-                <p class="timeline__subtitle">MPC | Percentage: 92.4%</p>
-                <p class="timeline__period">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Hyderabad, 2020-2021
-                </p>
-                <p class="text-clamp-2">Completed higher secondary education with Mathematics, Physics, and Chemistry.</p>
-              </div>
-            </div>
-          </div>
-          <div class="timeline__item fade-in">
-            <div class="timeline__marker"></div>
-            <div class="card timeline__content">
-              <div class="card__body">
-                <h3 class="timeline__title">Johnson Grammar School</h3>
-                <p class="timeline__subtitle">ICSE | Percentage: 85%</p>
-                <p class="timeline__period">
-                  <i class="fas fa-map-marker-alt"></i>
-                  Hyderabad, 2018-2019
-                </p>
-                <p class="text-clamp-2">Completed secondary education under ICSE curriculum with strong foundation in core subjects.</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -306,6 +249,60 @@
       </div>
     </section>
 
+    <!-- Education Section -->
+    <section class="section" id="education">
+      <div class="container">
+        <div class="section__header">
+          <h2 class="section__title">Education</h2>
+          <div class="section__divider"></div>
+        </div>
+        <div class="timeline">
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">SRM Institute Of Science and Technology</h3>
+                <p class="timeline__subtitle">B.Tech, CSE(AI/ML) | CGPA: 8.16/10.00</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Chennai, 2021-2025
+                </p>
+                <p class="text-clamp-3">Pursuing Bachelor of Technology in Computer Science and Engineering with specialization in Artificial Intelligence and Machine Learning.</p>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Sri Chaintanya Junior College</h3>
+                <p class="timeline__subtitle">MPC | Percentage: 92.4%</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Hyderabad, 2020-2021
+                </p>
+                <p class="text-clamp-2">Completed higher secondary education with Mathematics, Physics, and Chemistry.</p>
+              </div>
+            </div>
+          </div>
+          <div class="timeline__item fade-in">
+            <div class="timeline__marker"></div>
+            <div class="card timeline__content">
+              <div class="card__body">
+                <h3 class="timeline__title">Johnson Grammar School</h3>
+                <p class="timeline__subtitle">ICSE | Percentage: 85%</p>
+                <p class="timeline__period">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Hyderabad, 2018-2019
+                </p>
+                <p class="text-clamp-2">Completed secondary education under ICSE curriculum with strong foundation in core subjects.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Projects Section -->
     <section class="section section--projects-hscroll" id="projects">
       <div class="container">
@@ -314,8 +311,8 @@
           <div class="section__divider"></div>
         </div>
       </div>
-      <div class="projects-hscroll" id="projectsHScroll">
-        <div class="projects-hscroll__sticky">
+      <div class="projects-hscroll-wrap" id="projectsHScrollWrap">
+        <div class="projects-hscroll" id="projectsHScroll">
           <ul class="projects-hscroll__list">
             <li class="projects-hscroll__panel">
               <span class="logo projects-hscroll__label" aria-hidden="true">SAFETY</span>

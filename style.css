@@ -863,14 +863,15 @@ html {
   background-color: var(--color-background);
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  scroll-padding-top: var(--header-height, 80px);
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -2102,31 +2103,6 @@ select.form-control {
   font-size: var(--font-size-lg);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .infinity-brand {
-    mask-image: none;
-    overflow-x: auto;
-  }
-
-  .infinity-brand__inner {
-    animation: none;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: center;
-    gap: var(--space-12);
-  }
-
-  .infinity-brand__group[aria-hidden="true"] {
-    display: none;
-  }
-
-  .infinity-brand__group {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-  }
-}
-
 .skills-list {
   display: flex;
   flex-direction: column;
@@ -2955,39 +2931,7 @@ body {
   background: transparent;
 }
 
-/* Reorder sections: Experience above Education (visual order only) */
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-#about {
-  order: 10;
-}
-
-#experience {
-  order: 20;
-}
-
-#education {
-  order: 30;
-}
-
-#projects {
-  order: 40;
-}
-
-#skills {
-  order: 50;
-}
-
-#certifications {
-  order: 60;
-}
-
-#contact {
-  order: 70;
-}
+/* Section order: Experience before Education (see index.html) */
 
 /* Square package blocks (no pins) + subtle IC-style surface */
 #experience .card.timeline__content,
@@ -3142,18 +3086,23 @@ main {
   border-top: 1px solid rgb(255 255 255 / 0.14);
 }
 
-/* Experience — Framer-style stacking cards */
+/* Experience — Framer-style stacking cards (ui-layouts stacking-card) */
+.section--experience-stack {
+  overflow: visible;
+}
+
 .stack-cards {
   position: relative;
   width: min(900px, 100%);
   margin: 0 auto;
+  padding-inline: var(--space-16);
 }
 
 .stack-cards__item {
   position: sticky;
-  top: 0;
-  height: 100vh;
-  height: 100dvh;
+  top: var(--header-height, 80px);
+  height: calc(100vh - var(--header-height, 80px));
+  height: calc(100dvh - var(--header-height, 80px));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3234,8 +3183,8 @@ main {
 
 @media (max-width: 768px) {
   .stack-cards__item {
-    height: 92vh;
-    height: 92dvh;
+    height: calc(92vh - var(--header-height, 80px));
+    height: calc(92dvh - var(--header-height, 80px));
     padding: var(--space-16) 0;
   }
 
@@ -3246,25 +3195,29 @@ main {
   }
 }
 
-/* Projects — horizontal scroll creative */
+/* Projects — horizontal scroll creative (ui-layouts horizontal-scroll) */
 .section--projects-hscroll {
   padding-bottom: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .section--projects-hscroll > .container {
   margin-bottom: var(--space-24);
 }
 
-.projects-hscroll {
+.projects-hscroll-wrap {
   position: relative;
-  width: 100%;
+  height: calc(var(--hscroll-panels, 4) * (100vh - var(--header-height, 80px)));
+  height: calc(var(--hscroll-panels, 4) * (100dvh - var(--header-height, 80px)));
 }
 
-.projects-hscroll__sticky {
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
+.projects-hscroll {
+  position: sticky;
+  top: var(--header-height, 80px);
+  width: 100%;
+  height: calc(100vh - var(--header-height, 80px));
+  height: calc(100dvh - var(--header-height, 80px));
+  overflow: clip;
 }
 
 .projects-hscroll__list {
@@ -3285,7 +3238,7 @@ main {
   align-items: center;
   justify-content: center;
   padding: var(--space-24);
-  overflow: hidden;
+  overflow: clip;
   background: transparent;
 }
 
@@ -3325,31 +3278,33 @@ main {
   overflow: visible;
 }
 
-.projects-hscroll--static {
+.projects-hscroll-wrap--static {
+  height: auto;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
-.projects-hscroll--static .projects-hscroll__sticky {
+.projects-hscroll-wrap--static .projects-hscroll {
+  position: relative;
   height: auto;
   min-height: 85vh;
   min-height: 85dvh;
 }
 
-.projects-hscroll--static .projects-hscroll__list {
+.projects-hscroll-wrap--static .projects-hscroll__list {
   transform: none !important;
   width: max-content;
 }
 
-.projects-hscroll--static .projects-hscroll__panel {
+.projects-hscroll-wrap--static .projects-hscroll__panel {
   scroll-snap-align: start;
   min-height: 85vh;
   min-height: 85dvh;
 }
 
-.projects-hscroll--static .projects-hscroll__label {
+.projects-hscroll-wrap--static .projects-hscroll__label {
   display: none;
 }
 

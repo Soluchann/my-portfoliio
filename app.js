@@ -552,9 +552,6 @@ document.addEventListener('DOMContentLoaded', function() {
       lastTime: 0,
     };
 
-    const prefersReduced = window.matchMedia &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     function isDarkTheme() {
       const attr = document.documentElement.getAttribute('data-color-scheme');
       if (attr === 'dark') return true;
@@ -602,10 +599,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const now = ts || performance.now();
       const dt = Math.min(50, now - (state.lastTime || now));
       state.lastTime = now;
-      state.t += (dt / 1000) * (prefersReduced ? 0.25 : 1);
+      state.t += dt / 1000;
 
       // Smoothly follow cursor to avoid sudden crest creation.
-      const smoothFactor = prefersReduced ? 0.08 : 0.18;
+      const smoothFactor = 0.18;
       state.mouseX += (state.targetMouseX - state.mouseX) * smoothFactor;
       state.mouseY += (state.targetMouseY - state.mouseY) * smoothFactor;
 
